@@ -46,14 +46,11 @@ public class CustomEventAdapter extends ArrayAdapter<Event> {
         TextView eventTime = (TextView) theView.findViewById(R.id.EventTime);
         eventTime.setText(getItem(position).startTime);
 
-//        //TODO add database values
+        //TODO add database values
 
 
-
-//        theView.setOnItemClickListener((new View.OnItemClickListener() {
 //
-//            public
-//        }
+//        theView.setOnClickListener((new View.OnItemClickListener() {
 //
 //            //@Override
 //            //public void onClick(View arg0) {
@@ -61,14 +58,14 @@ public class CustomEventAdapter extends ArrayAdapter<Event> {
 //                // TODO Auto-generated method stub
 //                //Toast.makeText(getContext(), "You clicked me!", Toast.LENGTH_SHORT).show();
 //                //Intent i = new Intent(getContext(), PuzzleActivity.class);
-                  //i.putExtra("new_variable_name","value");
+//                  i.putExtra("new_variable_name","value");
 //                //getContext().startActivity(i);
 //            //}
 //
 //
-//        //}
+//        }
 //        ));
-
+//
         return theView;
     }
 

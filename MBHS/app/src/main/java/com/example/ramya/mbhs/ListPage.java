@@ -1,5 +1,6 @@
 package com.example.ramya.mbhs;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -41,7 +42,10 @@ public class ListPage extends Fragment {
             public void onItemClick(AdapterView<?> adapter, View v, int position,
                                     long arg3) {
                 Event value = (Event) adapter.getItemAtPosition(position);
-                Toast.makeText(getContext(), value.title, Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(getContext(), DetailActivity.class);
+                  //i.putExtra("new_variable_name","value");
+                getContext().startActivity(i);
+                //Toast.makeText(getContext(), value.title, Toast.LENGTH_SHORT).show();
                 // assuming string and if you want to get the value on click of list item
                 // do what you intend to do on click of listview row
             }
