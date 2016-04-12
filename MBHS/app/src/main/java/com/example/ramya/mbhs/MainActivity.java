@@ -22,6 +22,8 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+    //TODO add icons to the action bar instead of words
+
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -77,7 +79,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (id == R.id.explore) {
-            return true;
+            Intent intent = new Intent(this, ExploreActivity.class);
+            this.startActivity(intent);
             //Intent i = new Intent(this, ExploreActivity.class);
             //i.putExtra("new_variable_name","value");
             //this.startActivity(i);

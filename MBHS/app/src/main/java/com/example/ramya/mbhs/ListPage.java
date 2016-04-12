@@ -2,6 +2,7 @@ package com.example.ramya.mbhs;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -43,7 +44,7 @@ public class ListPage extends Fragment {
                                     long arg3) {
                 Event value = (Event) adapter.getItemAtPosition(position);
                 Intent i = new Intent(getContext(), DetailActivity.class);
-                  //i.putExtra("new_variable_name","value");
+                i.putExtra("thisEvent", arrayOfEvents[position].title);
                 getContext().startActivity(i);
                 //Toast.makeText(getContext(), value.title, Toast.LENGTH_SHORT).show();
                 // assuming string and if you want to get the value on click of list item
