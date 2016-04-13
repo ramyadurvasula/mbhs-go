@@ -9,4 +9,5 @@
         android:id="@+id/eventListView"
         android:layout_gravity="center_horizontal"
         android:headerDividersEnabled="false" />
+
 </LinearLayout>
