@@ -26,11 +26,10 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingLeft="10dp"
-        android:orientation="vertical">
+        android:paddingLeft="10dp">
 
         <TextView
             android:layout_width="match_parent"
@@ -42,22 +41,25 @@
             android:padding="10dp"
             android:text="Event Name"
             android:layout_gravity="top|left"
-            android:layout_marginTop="80dp"/>
+            android:layout_marginTop="80dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id = "@+id/thisEventDate"
+            android:id = "@+id/thisEventDateTime"
             android:textSize="20sp"
             android:textStyle="bold"
             android:padding="10dp"
             android:text="11/11"
-            android:textColor="#000000"/>
+            android:textColor="#000000"
+            android:layout_below="@id/thisEventName"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id = "@+id/thisEventTime"
+            android:id = "@+id/thisEventEndTime"
             android:textSize="20sp"
             android:padding="10dp"
             android:text="12:00 PM"
@@ -71,16 +73,18 @@
             android:textStyle="italic"
             android:textColor="#333333"
             android:padding="10dp"
-            android:text="Event Location" />
+            android:text="Event Location"
+            android:layout_below="@id/thisEventDateTime"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id = "@+id/EventDescription"
+            android:id = "@+id/thisEventDescription"
             android:textSize="20sp"
             android:textColor="@color/colorPrimaryDark"
             android:padding = "10dp"
-            android:text="Event Description" />
+            android:text="Event Description"
+            android:layout_below="@id/thisEventLocation"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>

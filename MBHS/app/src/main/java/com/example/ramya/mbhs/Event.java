@@ -27,4 +27,6 @@ public class Event {
         endTime = eT;
     }
 
+    //TODO write a toStringArray method
+
 }

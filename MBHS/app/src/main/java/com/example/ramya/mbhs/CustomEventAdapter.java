@@ -47,25 +47,6 @@ public class CustomEventAdapter extends ArrayAdapter<Event> {
         eventTime.setText(getItem(position).startTime);
 
         //TODO add database values
-
-
-//
-//        theView.setOnClickListener((new View.OnItemClickListener() {
-//
-//            //@Override
-//            //public void onClick(View arg0) {
-//
-//                // TODO Auto-generated method stub
-//                //Toast.makeText(getContext(), "You clicked me!", Toast.LENGTH_SHORT).show();
-//                //Intent i = new Intent(getContext(), PuzzleActivity.class);
-//                  i.putExtra("new_variable_name","value");
-//                //getContext().startActivity(i);
-//            //}
-//
-//
-//        }
-//        ));
-//
         return theView;
     }
 

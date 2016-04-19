@@ -44,7 +44,17 @@ public class ListPage extends Fragment {
                                     long arg3) {
                 Event value = (Event) adapter.getItemAtPosition(position);
                 Intent i = new Intent(getContext(), DetailActivity.class);
-                i.putExtra("thisEvent", arrayOfEvents[position].title);
+
+                String[] thisEvent = new String[7];
+                thisEvent[0] = arrayOfEvents[position].title;
+                thisEvent[1] = arrayOfEvents[position].description;
+                thisEvent[2] = arrayOfEvents[position].location;
+                thisEvent[3] = arrayOfEvents[position].startDate;
+                thisEvent[4] = arrayOfEvents[position].endDate;
+                thisEvent[5] = arrayOfEvents[position].startTime;
+                thisEvent[6] = arrayOfEvents[position].endTime;
+
+                i.putExtra("thisEvent", thisEvent);
                 getContext().startActivity(i);
                 //Toast.makeText(getContext(), value.title, Toast.LENGTH_SHORT).show();
                 // assuming string and if you want to get the value on click of list item
