@@ -9,6 +9,8 @@ import android.view.MenuItem;
 
 public class ToolbarActivity extends AppCompatActivity {
 
+    SQLConnection connectClass;
+
     //TODO add icons to the action bar instead of words
 
     @Override
@@ -18,6 +20,9 @@ public class ToolbarActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        connectClass = new SQLConnection();
+
 
     }
 
