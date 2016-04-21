@@ -22,8 +22,10 @@ import java.util.Arrays;
  */
 public class ListPage extends Fragment {
 
+    //TODO move these to the main activity so that they can be accessed from the calendar page
     private Event[] arrayOfEvents = new Event[] {
-            new Event("Yoga Club", "Come do yoga!", "Room 352", "3/26", "3/26", "3:30PM", "4:30PM"),
+            new Event("Yoga Club is the best club that has ever existed at Blair", "Come do yoga!", "Room 352", "3/26", "3/26", "3:30PM", "4:30PM"),
+            new Event("PuzzlePalooza", "Prizes are huge!", "Montgomery Blair HS", "5/18", "5/23", "10:00AM", "12:00PM"),
             new Event("Volleyball Game", "Blair vs. BCC", "Aux. Gym", "4/19", "4/19", "3:00PM", "5:00PM"),
             new Event("Early Release Day", "Dismissal at 1:00 PM", "Montgomery County Public Schools", "4/10", "4/10", "All Day", "All Day"),
     };
@@ -45,16 +47,16 @@ public class ListPage extends Fragment {
                 Event value = (Event) adapter.getItemAtPosition(position);
                 Intent i = new Intent(getContext(), DetailActivity.class);
 
-                String[] thisEvent = new String[7];
-                thisEvent[0] = arrayOfEvents[position].title;
-                thisEvent[1] = arrayOfEvents[position].description;
-                thisEvent[2] = arrayOfEvents[position].location;
-                thisEvent[3] = arrayOfEvents[position].startDate;
-                thisEvent[4] = arrayOfEvents[position].endDate;
-                thisEvent[5] = arrayOfEvents[position].startTime;
-                thisEvent[6] = arrayOfEvents[position].endTime;
+//                String[] thisEvent = new String[7];
+//                thisEvent[0] = arrayOfEvents[position].title;
+//                thisEvent[1] = arrayOfEvents[position].description;
+//                thisEvent[2] = arrayOfEvents[position].location;
+//                thisEvent[3] = arrayOfEvents[position].startDate;
+//                thisEvent[4] = arrayOfEvents[position].endDate;
+//                thisEvent[5] = arrayOfEvents[position].startTime;
+//                thisEvent[6] = arrayOfEvents[position].endTime;
 
-                i.putExtra("thisEvent", thisEvent);
+                i.putExtra("thisEvent", arrayOfEvents[position].toStringArray());
                 getContext().startActivity(i);
                 //Toast.makeText(getContext(), value.title, Toast.LENGTH_SHORT).show();
                 // assuming string and if you want to get the value on click of list item

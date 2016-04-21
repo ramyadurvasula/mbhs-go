@@ -1,23 +1,20 @@
 package com.example.ramya.mbhs;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class ExploreActivity extends AppCompatActivity {
+public class ToolbarActivity extends AppCompatActivity {
+
+    //TODO add icons to the action bar instead of words
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_explore);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -40,18 +37,22 @@ public class ExploreActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.home_page) {
-            return true;
+            Intent intent = new Intent(this, MainActivity.class);
+            this.startActivity(intent);
         }
 
         if (id == R.id.explore) {
-            return true;
+            Intent intent = new Intent(this, ExploreActivity.class);
+            this.startActivity(intent);
         }
 
         if (id == R.id.settings) {
-            return true;
+            Intent intent = new Intent(this, SettingsActivity.class);
+            this.startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);
+
     }
 
 }

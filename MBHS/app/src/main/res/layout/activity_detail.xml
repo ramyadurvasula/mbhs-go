@@ -29,7 +29,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingLeft="10dp">
+        android:paddingLeft="10dp"
+        android:paddingRight="20dp">
 
         <TextView
             android:layout_width="match_parent"
@@ -38,32 +39,26 @@
             android:textSize="24sp"
             android:textStyle="bold"
             android:textColor="@color/colorPrimary"
-            android:padding="10dp"
             android:text="Event Name"
+            android:paddingLeft="10dp"
+            android:paddingBottom="10dp"
+
             android:layout_gravity="top|left"
             android:layout_marginTop="80dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"/>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id = "@+id/thisEventDateTime"
             android:textSize="20sp"
-            android:textStyle="bold"
-            android:padding="10dp"
+            android:paddingLeft="10dp"
             android:text="11/11"
             android:textColor="#000000"
-            android:layout_below="@id/thisEventName"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id = "@+id/thisEventEndTime"
-            android:textSize="20sp"
-            android:padding="10dp"
-            android:text="12:00 PM"
-            android:textColor="#000000" />
+            android:layout_below="@+id/thisEventName"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
         <TextView
             android:layout_width="match_parent"
@@ -72,7 +67,8 @@
             android:textSize="20sp"
             android:textStyle="italic"
             android:textColor="#333333"
-            android:padding="10dp"
+            android:paddingLeft="10dp"
+            android:paddingBottom="10dp"
             android:text="Event Location"
             android:layout_below="@id/thisEventDateTime"/>
 
