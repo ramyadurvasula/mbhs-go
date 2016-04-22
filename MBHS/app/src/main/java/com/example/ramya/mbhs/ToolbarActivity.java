@@ -46,12 +46,12 @@ public class ToolbarActivity extends AppCompatActivity {
             this.startActivity(intent);
         }
 
-        if (id == R.id.explore) {
+        else if (id == R.id.explore) {
             Intent intent = new Intent(this, ExploreActivity.class);
             this.startActivity(intent);
         }
 
-        if (id == R.id.settings) {
+        else if (id == R.id.settings) {
             Intent intent = new Intent(this, SettingsActivity.class);
             this.startActivity(intent);
         }

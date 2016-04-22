@@ -1,17 +1,19 @@
 package com.example.ramya.mbhs;
 
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 
-public class ExploreActivity extends AppCompatActivity {
+public class ExploreActivity extends ToolbarActivity {
+
+    //TODO move these to the main activity so that they can be accessed from all pages
+    private Group[] arrayOfGroups = new Group[] {
+            new Group("Yoga Club", "Best club", "mbhsyoga@gmail.com"),
+            new Group("Puzzle Lords", "PPZ VI is SECONDS AWAY!!", "Follow us on Twitter!")
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,36 +24,23 @@ public class ExploreActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-    }
+        ListView listView = (ListView) findViewById(R.id.groupListView);
+        ListAdapter groupAdapter = new CustomGroupAdapter(this, arrayOfGroups);
+        listView.setAdapter(groupAdapter);
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_home_page, menu);
-        return true;
-    }
+        //TODO write and connect to the groupActivity class
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapter, View v, int position,
+                                    long arg3) {
+                Group value = (Group) adapter.getItemAtPosition(position);
+                //Intent i = new Intent(getContext(), DetailActivity.class);
+                //i.putExtra("thisEvent", arrayOfEvents[position].toStringArray());
+                //getContext().startActivity(i);
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+            }
+        });
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.home_page) {
-            return true;
-        }
-
-        if (id == R.id.explore) {
-            return true;
-        }
-
-        if (id == R.id.settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
 }

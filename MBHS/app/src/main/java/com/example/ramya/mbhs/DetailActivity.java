@@ -1,15 +1,13 @@
 package com.example.ramya.mbhs;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.widget.TextView;
 
 /**
  * Created by Ramya on 4/6/2016.
  */
-public class DetailActivity extends AppCompatActivity {
+public class DetailActivity extends ToolbarActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -33,9 +31,6 @@ public class DetailActivity extends AppCompatActivity {
             newEvent = (String[]) savedInstanceState.getSerializable("thisEvent");
         }
 
-        //TODO: Fix date/time string
-        //TODO: Modify spacing on detail activity page
-
         TextView eventName = (TextView) findViewById(R.id.thisEventName);
         eventName.setText(newEvent[0]);
 
@@ -48,14 +43,6 @@ public class DetailActivity extends AppCompatActivity {
         TextView eventDate = (TextView) findViewById(R.id.thisEventDateTime);
         eventDate.setText(newEvent[7]);
 
-    }
-
-    @Override
-    //TODO: Add this to a superclass of basic activities
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_home_page, menu);
-        return true;
     }
 
 }

@@ -59,40 +59,6 @@ public class MainActivity extends ToolbarActivity {
 
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_home_page, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.home_page) {
-//            return true;
-//        }
-//
-//        if (id == R.id.explore) {
-//            Intent intent = new Intent(this, ExploreActivity.class);
-//            this.startActivity(intent);
-//            //Intent i = new Intent(this, ExploreActivity.class);
-//            //i.putExtra("new_variable_name","value");
-//            //this.startActivity(i);
-//        }
-//
-//        if (id == R.id.me) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
-
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
