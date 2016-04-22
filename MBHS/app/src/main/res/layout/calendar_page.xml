@@ -1,12 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <RadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Calendar Goes Here"
-        android:id="@+id/radioButton"
-        android:checked="false" />
-</LinearLayout>
+
+<ListView
+    android:id="@+id/bookings_listview"
+    android:layout_below="@+id/compactcalendar_view"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+<Button
+    android:layout_alignParentLeft="true"
+    android:id="@+id/prev_button"
+    android:text="Previous"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"/>
+
+<Button
+    android:layout_alignParentRight="true"
+    android:id="@+id/next_button"
+    android:text="Next"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"/>
+
+<com.example.ramya.mbhs.CompactCalendarView
+    android:layout_below="@+id/prev_button"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/compactcalendar_view"
+    android:layout_width="fill_parent"
+    android:layout_height="250dp"
+    app:compactCalendarTextSize="12sp"
+    app:compactCalendarBackgroundColor="#ffe95451"
+    app:compactCalendarTextColor="#fff"
+    app:compactCalendarCurrentSelectedDayBackgroundColor="#E57373"
+    app:compactCalendarCurrentDayBackgroundColor="#B71C1C"
+    />
+</ListView>
