@@ -29,6 +29,8 @@ public class CalendarPage extends Fragment {
     private Calendar currentCalender = Calendar.getInstance(Locale.getDefault());
     private SimpleDateFormat dateFormatForMonth = new SimpleDateFormat("MMM - yyyy", Locale.getDefault());
     private Map<Date, List<Booking>> bookings = new HashMap<>();
+private String[] months = {“January”, “February”, “March”, “April”, “May”, “June”, “July”, “August”, “September”, “October”, “November”, “December”};
+private int dispmonth = currentMonth;
 
 
     @Nullable
@@ -45,7 +47,17 @@ public class CalendarPage extends Fragment {
         final ListView bookingsListView = (ListView) getView().findViewById(R.id.bookings_listview);
         final Button showPreviousMonthBut = (Button) getView().findViewById(R.id.prev_button);
         final Button showNextMonthBut = (Button) getView().findViewById(R.id.next_button);
+ bookings.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapter, View v, int position,
+                                    long arg3) {
+                Booking value = (Booking) adapter.getItemAtPosition(position);
+                Intent i = new Intent(getContext(), DetailActivity.class);
+                i.putExtra("thisEvent", arrayOfEvents[position].toStringArray());
+                getContext().startActivity(i);
 
+            }
+        });
         final ArrayAdapter adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, mutableBookings);
         bookingsListView.setAdapter(adapter);
         final CompactCalendarView compactCalendarView = (CompactCalendarView) getView().findViewById(R.id.compactcalendar_view);
@@ -92,6 +104,13 @@ public class CalendarPage extends Fragment {
 
             @Override
             public void onMonthScroll(Date date) {
+
+if (dispmonth - 1 == 0)
+dispmonth = 12;
+else
+dispmonth --;
+textv.setText(months[dispmonth];
+
 
             };
 
