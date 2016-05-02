@@ -1,6 +1,12 @@
 <?php
-	define('DB_USER', "mbhsgo");
-	define('DB_PASSWORD', "...");
-	define('DB_DATABASE', "mbhsweb");
-	define('DB_SERVER', "localhost");
+	$user = 'mbhsgo';
+	$password = 'softwaredesign';
+	$database = 'mbhsweb';
+	$host = 'localhost';
+	/*
+	define('user', "mbhsgo");
+	define('password', "softwaredesign");
+	define('database', "mbhsweb");
+	define('host', "localhost");
+	*/
 ?>
