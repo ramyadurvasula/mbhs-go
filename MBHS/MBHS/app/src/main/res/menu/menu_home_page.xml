@@ -16,9 +16,9 @@
         app:showAsAction="always" />
 
     <item
-        android:id="@+id/me"
+        android:id="@+id/settings"
         android:orderInCategory="3"
-        android:title="Me"
-        app:showAsAction="always" />
+        android:title="Settings"
+        app:showAsAction="never" />
 
 </menu>

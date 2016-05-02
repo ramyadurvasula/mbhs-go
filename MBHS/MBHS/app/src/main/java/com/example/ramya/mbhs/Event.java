@@ -27,6 +27,38 @@ public class Event {
         endTime = eT;
     }
 
-    //TODO write a toStringArray method
+    public String[] toStringArray() {
+
+        String[] thisEvent = new String[8];
+
+        thisEvent[0] = this.title;
+        thisEvent[1] = this.description;
+        thisEvent[2] = this.location;
+        thisEvent[3] = this.startDate;
+        thisEvent[4] = this.endDate;
+        thisEvent[5] = this.startTime;
+        thisEvent[6] = this.endTime;
+
+        //TODO make sure startDate and startTime CANNOT be null!
+        String dateString = new String();
+        dateString += startDate + " " + startTime;
+        if (endTime.equals(null)) endTime = "";
+        if (endDate.equals(null)) endDate = "";
+        //one day only
+        if (startDate.equals(endDate)) {
+            if (!startTime.equals(endTime)) {
+                dateString += " - " + endDate + " " + endTime;
+            }
+        }
+        //multiple days
+        else {
+            dateString += " - " + endDate + " " + endTime;
+        }
+
+        thisEvent[7] = dateString;
+
+        return thisEvent;
+
+    }
 
 }
