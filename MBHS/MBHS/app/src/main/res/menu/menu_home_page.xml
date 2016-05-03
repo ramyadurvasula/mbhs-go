@@ -1,0 +1,24 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.ramya.mbhsgo.HomePage">
+
+    <item
+        android:id="@+id/home_page"
+        android:orderInCategory="1"
+        android:title="Home"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/explore"
+        android:orderInCategory="2"
+        android:title="Explore"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/settings"
+        android:orderInCategory="3"
+        android:title="Settings"
+        app:showAsAction="never" />
+
+</menu>

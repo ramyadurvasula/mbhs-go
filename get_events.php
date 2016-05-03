@@ -3,23 +3,23 @@
 * @author Stephan Loh
 * Code adapted from: http://www.androidhive.info/2012/05/how-to-connect-android-with-php-mysql/
 */
+
+error_reporting(-1);
+ini_set('display_errors', 'On');
+
 	//variable for holding the JSON response
 	$response = array();
 	
 	//include the db connect class
-	require_once __DIR__ . '/db_connect.php';
+	require_once 'db_connect.php';
 	
-	//connect to database
-	$db = new DB_CONNECT();
+	$results = $db->query('SELECT * FROM events');
+	$response["events"] = array();
 	
-	$result = mysql_query("SELECT * FROM events")  or die(mysql_error());
-	
-	if(mysql_num_rows($result) > 0 ){
-		$response["events"] = array();
-		
-		while ($row = mysql_fetch_array($result)) {
-			// temp user array
-			$product = array();
+	foreach($results as $row) {
+		echo json_encode($row["name"]);
+		/*
+		$product = array();
 			$product["eventID"] = $row["eventID"];
 			$product["start"] = $row["start"];
 			$product["name"] = $row["name"];
@@ -29,19 +29,14 @@
  
 			// push single product into final response array
 			array_push($response["events"], $product);
-		}
-		$response["success"] = 1;
-		
-		echo json_encode($response);	
-		} 
-	} else {
-		// no products found
-		$response["success"] = 0;
-		$response["message"] = "No products found";
-	 
-		// echo no users JSON
-		echo json_encode($response);
+		*/
+			
 	}
+		$response["success"] = 1;
+		//echo $response["events"][0]["name"];
+		//echo json_encode($response);	 
+	
+	
 	
 
 ?>
