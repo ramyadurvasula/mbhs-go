@@ -29,7 +29,7 @@ public class CalendarPage extends Fragment {
 
     private Calendar currentCalender = Calendar.getInstance(Locale.getDefault());
     private SimpleDateFormat dateFormatForMonth = new SimpleDateFormat("MMM - yyyy", Locale.getDefault());
-    private Map<Date, List<Booking>> bookings = new HashMap<>();
+    private Map<Date, List<Event>> bookings = new HashMap<>();
 
     @Nullable
     @Override
@@ -37,6 +37,7 @@ public class CalendarPage extends Fragment {
         super.onCreate(savedInstanceState);
         View testview = inflater.inflate(R.layout.calendar_page, null);
         final List<String> mutableBookings = new ArrayList<>();
+	TextView textv = (TextView) testview.findViewById(R.id.textview);
 
         final ListView bookingsListView = (ListView) testview.findViewById(R.id.bookings_listview);
         final Button showPreviousMonthBut = (Button) testview.findViewById(R.id.prev_button);
@@ -54,8 +55,6 @@ public class CalendarPage extends Fragment {
         compactCalendarView.setCurrentSelectedDayBackgroundColor(getResources().getColor(R.color.colorAccent));
 
         addEvents(compactCalendarView, -1);
-        addEvents(compactCalendarView, Calendar.DECEMBER);
-        addEvents(compactCalendarView, Calendar.AUGUST);
         compactCalendarView.invalidate();
 
         // below line will display Sunday as the first day of the week
@@ -68,13 +67,13 @@ public class CalendarPage extends Fragment {
         compactCalendarView.setListener(new CompactCalendarView.CompactCalendarViewListener() {
             @Override
             public void onDayClick(Date dateClicked) {
-                List<Booking> bookingsFromMap = bookings.get(dateClicked);
+                List<Event> bookingsFromMap = bookings.get(dateClicked);
                 Log.d("MainActivity", "inside onclick " + dateClicked);
                 if(bookingsFromMap != null){
                     Log.d("MainActivity", bookingsFromMap.toString());
                     mutableBookings.clear();
-                    for(Booking booking : bookingsFromMap){
-                        mutableBookings.add(booking.getTitle());
+                    for(Event booking : bookingsFromMap){
+                        mutableBookings.add(booking.title);
                     }
                     // below will remove events
                     // compactCalendarView.removeEvent(new CalendarDayEvent(dateClicked.getTime(), Color.argb(255, 169, 68, 65)), true);
@@ -82,8 +81,8 @@ public class CalendarPage extends Fragment {
                 }
             }
 //            @Override
-//            public void onBookingClicked(Booking bookingClicked) {
-//                mutableBookings.add(bookingClicked.toString());
+//            public void onBookingClicked(Event bookingClicked) {
+//                mutableBookings.add(bookingClicked.title());
 //            }
 
             @Override
@@ -115,6 +114,48 @@ public class CalendarPage extends Fragment {
             @Override
             public void onClick(View v) {
                 compactCalendarView.showNextMonth();
+		String month = textv.getText();
+		switch(month) {
+			case “January”:
+				textv.setText(“February”);
+				break;
+			case “February”:
+				textv.setText(“March”);
+				break;
+			case “March”:
+				textv.setText(“April”);
+				break;
+			case “April”:
+				textv.setText(“May”);
+				break;
+			case “May”:
+				textv.setText(“June”);
+				break;
+			case “June”:
+				textv.setText(“July”);
+				break;
+			case “July”:
+				textv.setText(“August”);
+				break;
+			case “August”:
+				textv.setText(“September”);
+				break;
+			case “September”:
+				textv.setText(“October”);
+				break;
+			case “October”:
+				textv.setText(“November”);
+				break;
+			case “November”:
+				textv.setText(“December”);
+				break;
+			case “December”:
+				textv.setText(“January”);
+				break;
+			default:
+				compacCalendarView.set(Calendar.MONTH, month);
+				textv.setText(May);
+		}
             }
         });
         return inflater.inflate(R.layout.calendar_page, container, false);
@@ -137,11 +178,11 @@ public class CalendarPage extends Fragment {
         }
     }
 
-    private List<Booking> createBookings() {
+    private List<Event> createBookings() {
         return Arrays.asList(
-                new Booking("Test 1", currentCalender.getTime(), "First test"),
-                new Booking("Test 2", currentCalender.getTime(), "Second test"),
-                new Booking("Test 3", currentCalender.getTime(), "Third test"));
+                new Event(“Test 1", "First test”, “here”, “now”, “forever”, “when”, “then"),
+                new Event(“Test 2", "Second test”, “here”, “now”, “forever”, “when”, “then"),
+                new Event(“Test 3", "Third test”, “here”, “now”, “forever”, “when”, “then"));
     }
 
     private void setToMidnight(Calendar calendar) {
