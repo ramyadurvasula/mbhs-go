@@ -79,11 +79,18 @@ public class CalendarPage extends Fragment {
                     // compactCalendarView.removeEvent(new CalendarDayEvent(dateClicked.getTime(), Color.argb(255, 169, 68, 65)), true);
                     adapter.notifyDataSetChanged();
                 }
+            }        
+bookingsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapter, View v, int position,
+                                    long arg3) {
+                Event value = (Event) adapter.getItemAtPosition(position).getEvent();
+                Intent i = new Intent(getContext(), DetailActivity.class);
+                i.putExtra("thisEvent", arrayOfEvents[position].toStringArray());
+                getContext().startActivity(i);
+
             }
-//            @Override
-//            public void onBookingClicked(Event bookingClicked) {
-//                mutableBookings.add(bookingClicked.title());
-//            }
+        });
 
             @Override
             public void onMonthScroll(Date date) {
