@@ -24,6 +24,7 @@ import java.util.Map;
 /**
  * Created by Ramya on 3/19/2016.
  */
+
 public class CalendarPage extends Fragment {
 
     private Calendar currentCalender = Calendar.getInstance(Locale.getDefault());
@@ -33,21 +34,17 @@ public class CalendarPage extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.calendar_page, container, false);
-    }
-       
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        View testview = inflater.inflate(R.layout.calendar_page, null);
         final List<String> mutableBookings = new ArrayList<>();
 
-        final ListView bookingsListView = (ListView) getView().findViewById(R.id.bookings_listview);
-        final Button showPreviousMonthBut = (Button) getView().findViewById(R.id.prev_button);
-        final Button showNextMonthBut = (Button) getView().findViewById(R.id.next_button);
+        final ListView bookingsListView = (ListView) testview.findViewById(R.id.bookings_listview);
+        final Button showPreviousMonthBut = (Button) testview.findViewById(R.id.prev_button);
+        final Button showNextMonthBut = (Button) testview.findViewById(R.id.next_button);
 
         final ArrayAdapter adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, mutableBookings);
         bookingsListView.setAdapter(adapter);
-        final CompactCalendarView compactCalendarView = (CompactCalendarView) getView().findViewById(R.id.compactcalendar_view);
+        final CompactCalendarView compactCalendarView = (CompactCalendarView) testview.findViewById(R.id.compactcalendar_view);
         compactCalendarView.drawSmallIndicatorForEvents(true);
 
         compactCalendarView.setCalendarBackgroundColor(R.color.background_material_light);
@@ -69,21 +66,21 @@ public class CalendarPage extends Fragment {
 
         //set title on calendar scroll
         compactCalendarView.setListener(new CompactCalendarView.CompactCalendarViewListener() {
-                @Override
-                public void onDayClick(Date dateClicked) {
-                    List<Booking> bookingsFromMap = bookings.get(dateClicked);
-                    Log.d("MainActivity", "inside onclick " + dateClicked);
-                    if(bookingsFromMap != null){
-                        Log.d("MainActivity", bookingsFromMap.toString());
-                        mutableBookings.clear();
-                        for(Booking booking : bookingsFromMap){
-                            mutableBookings.add(booking.getTitle());
-                        }
-                        // below will remove events
-                        // compactCalendarView.removeEvent(new CalendarDayEvent(dateClicked.getTime(), Color.argb(255, 169, 68, 65)), true);
-                        adapter.notifyDataSetChanged();
+            @Override
+            public void onDayClick(Date dateClicked) {
+                List<Booking> bookingsFromMap = bookings.get(dateClicked);
+                Log.d("MainActivity", "inside onclick " + dateClicked);
+                if(bookingsFromMap != null){
+                    Log.d("MainActivity", bookingsFromMap.toString());
+                    mutableBookings.clear();
+                    for(Booking booking : bookingsFromMap){
+                        mutableBookings.add(booking.getTitle());
                     }
+                    // below will remove events
+                    // compactCalendarView.removeEvent(new CalendarDayEvent(dateClicked.getTime(), Color.argb(255, 169, 68, 65)), true);
+                    adapter.notifyDataSetChanged();
                 }
+            }
 //            @Override
 //            public void onBookingClicked(Booking bookingClicked) {
 //                mutableBookings.add(bookingClicked.toString());
@@ -108,49 +105,51 @@ public class CalendarPage extends Fragment {
 
 
         showPreviousMonthBut.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    compactCalendarView.showPreviousMonth();
-                }
-            });
-
-            showNextMonthBut.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    compactCalendarView.showNextMonth();
-                }
-            });
-
-
-        }
-
-        private void addEvents(CompactCalendarView compactCalendarView, int month) {
-            currentCalender.setTime(new Date());
-            currentCalender.set(Calendar.DAY_OF_MONTH, 1);
-            Date firstDayOfMonth = currentCalender.getTime();
-            for(int i = 0; i < 6; i++){
-                currentCalender.setTime(firstDayOfMonth);
-                if(month > -1){
-                    currentCalender.set(Calendar.MONTH, month);
-                }
-                currentCalender.add(Calendar.DATE, i);
-                setToMidnight(currentCalender);
-                compactCalendarView.addEvent(new CalendarDayEvent(currentCalender.getTimeInMillis(), R.color.accent_material_dark,  "Event " + i, "test " + i), false);
-                bookings.put(currentCalender.getTime(), createBookings());
+            @Override
+            public void onClick(View v) {
+                compactCalendarView.showPreviousMonth();
             }
-        }
+        });
 
-        private List<Booking> createBookings() {
-            return Arrays.asList(
-                    new Booking("Test 1", currentCalender.getTime(), "First test"),
-                    new Booking("Test 2", currentCalender.getTime(), "Second test"),
-                    new Booking("Test 3", currentCalender.getTime(), "Third test"));
-        }
+        showNextMonthBut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                compactCalendarView.showNextMonth();
+            }
+        });
+        return inflater.inflate(R.layout.calendar_page, container, false);
 
-        private void setToMidnight(Calendar calendar) {
-            calendar.set(Calendar.HOUR_OF_DAY, 0);
-            calendar.set(Calendar.MINUTE, 0);
-            calendar.set(Calendar.SECOND, 0);
-            calendar.set(Calendar.MILLISECOND, 0);
+    }
+
+    private void addEvents(CompactCalendarView compactCalendarView, int month) {
+        currentCalender.setTime(new Date());
+        currentCalender.set(Calendar.DAY_OF_MONTH, 1);
+        Date firstDayOfMonth = currentCalender.getTime();
+        for(int i = 0; i < 6; i++){
+            currentCalender.setTime(firstDayOfMonth);
+            if(month > -1){
+                currentCalender.set(Calendar.MONTH, month);
+            }
+            currentCalender.add(Calendar.DATE, i);
+            setToMidnight(currentCalender);
+            compactCalendarView.addEvent(new CalendarDayEvent(currentCalender.getTimeInMillis(), R.color.accent_material_dark,  "Event " + i, "test " + i), false);
+            bookings.put(currentCalender.getTime(), createBookings());
         }
     }
+
+    private List<Booking> createBookings() {
+        return Arrays.asList(
+                new Booking("Test 1", currentCalender.getTime(), "First test"),
+                new Booking("Test 2", currentCalender.getTime(), "Second test"),
+                new Booking("Test 3", currentCalender.getTime(), "Third test"));
+    }
+
+    private void setToMidnight(Calendar calendar) {
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+    }
+
+
+}
