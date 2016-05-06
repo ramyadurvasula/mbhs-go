@@ -114,6 +114,48 @@ bookingsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onClick(View v) {
                 compactCalendarView.showPreviousMonth();
+String month = textv.getText();
+		switch(month) {
+			case “January”:
+				textv.setText(“December”);
+				break;
+			case “February”:
+				textv.setText(“January”);
+				break;
+			case “March”:
+				textv.setText(“February”);
+				break;
+			case “April”:
+				textv.setText(“March”);
+				break;
+			case “May”:
+				textv.setText(“April”);
+				break;
+			case “June”:
+				textv.setText(“May”);
+				break;
+			case “July”:
+				textv.setText(“June”);
+				break;
+			case “August”:
+				textv.setText(“July”);
+				break;
+			case “September”:
+				textv.setText(“August”);
+				break;
+			case “October”:
+				textv.setText(“September”);
+				break;
+			case “November”:
+				textv.setText(“October”);
+				break;
+			case “December”:
+				textv.setText(“November”);
+				break;
+			default:
+				compacCalendarView.set(Calendar.MONTH, month);
+				textv.setText(May);
+	
             }
         });
 
