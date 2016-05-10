@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import java.text.SimpleDateFormat;
+import java.text.DateFormatSymbols;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -37,7 +38,8 @@ public class CalendarPage extends Fragment {
         super.onCreate(savedInstanceState);
         View testview = inflater.inflate(R.layout.calendar_page, null);
         final List<String> mutableBookings = new ArrayList<>();
-	TextView textv = (TextView) testview.findViewById(R.id.textview);
+	TextView textv = (TextView) testview.findViewById(R.id.month);
+	TextView yearv = (TextView) testview.findViewById(R.id.year);
 
         final ListView bookingsListView = (ListView) testview.findViewById(R.id.bookings_listview);
         final Button showPreviousMonthBut = (Button) testview.findViewById(R.id.prev_button);
@@ -151,11 +153,12 @@ String month = textv.getText();
 				break;
 			case “December”:
 				textv.setText(“November”);
+				yearv.setText((Int)yearv.getText - 1);
 				break;
 			default:
 				compacCalendarView.set(Calendar.MONTH, month);
-				textv.setText(May);
-	
+				textv.setText(“May”);
+				textv.setText(new DateFormatSymbols().getMonths()[Calendar.MONTH]);	
             }
         });
 
@@ -200,10 +203,12 @@ String month = textv.getText();
 				break;
 			case “December”:
 				textv.setText(“January”);
+				yearv.setText((Int)yearv.getText + 1);
 				break;
 			default:
 				compacCalendarView.set(Calendar.MONTH, month);
-				textv.setText(May);
+				textv.setText(new DateFormatSymbols().getMonths()[Calendar.MONTH]);	
+				yearv.setText(Calendar.YEAR);
 		}
             }
         });

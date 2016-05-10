@@ -21,13 +21,25 @@
         android:text="Previous"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+    <LinearLayout
+        android:id="@+id/monthbar"
+        android:layout_width=“match_parent”
+        android:layout_height="wrap_content">
     <TextView
         android:id="@+id/month"
         android:text=“May"
         android:textColor="#000000"
         android:textAlignment="center"
-        android:layout_width="210dp"
+        android:layout_width=“match_parent”
         android:layout_height="50dp" />
+    <TextView
+        android:id="@+id/year”
+        android:text=“2016”
+        android:textColor="#000000"
+        android:textAlignment="center"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+    </LinearLayout>
     <Button
         android:layout_alignParentRight="true"
         android:id="@+id/next_button"
