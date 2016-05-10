@@ -23,7 +23,7 @@
         android:layout_height="wrap_content" />
     <TextView
         android:id="@+id/month"
-        android:text="April 2016"
+        android:text=“May"
         android:textColor="#000000"
         android:textAlignment="center"
         android:layout_width="210dp"
