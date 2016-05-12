@@ -1,5 +1,6 @@
 package com.example.ramya.mbhs;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -7,12 +8,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
-import java.text.SimpleDateFormat;
 import java.text.DateFormatSymbols;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -38,8 +41,8 @@ public class CalendarPage extends Fragment {
         super.onCreate(savedInstanceState);
         View testview = inflater.inflate(R.layout.calendar_page, null);
         final List<String> mutableBookings = new ArrayList<>();
-	TextView textv = (TextView) testview.findViewById(R.id.month);
-	TextView yearv = (TextView) testview.findViewById(R.id.year);
+	    final TextView textv = (TextView) testview.findViewById(R.id.month);
+	    final TextView yearv = (TextView) testview.findViewById(R.id.year);
 
         final ListView bookingsListView = (ListView) testview.findViewById(R.id.bookings_listview);
         final Button showPreviousMonthBut = (Button) testview.findViewById(R.id.prev_button);
@@ -82,7 +85,10 @@ public class CalendarPage extends Fragment {
                     adapter.notifyDataSetChanged();
                 }
             }        
-bookingsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            bookingsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            }
             @Override
             public void onItemClick(AdapterView<?> adapter, View v, int position,
                                     long arg3) {
@@ -94,20 +100,15 @@ bookingsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             }
         });
 
-            @Override
-            public void onMonthScroll(Date date) {
-
-            };
-
-
-//                @Override
-//                public void onMonthScroll(Date firstDayOfNewMonth) {
-//                    bar.setText(dateFormatForMonth.format(firstDayOfNewMonth));
-//                }
 
 
 
-        });
+                @Override
+                public void onMonthScroll(Date firstDayOfNewMonth) {
+                }
+
+
+
 
 
 
@@ -116,48 +117,48 @@ bookingsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onClick(View v) {
                 compactCalendarView.showPreviousMonth();
-String month = textv.getText();
-		switch(month) {
-			case “January”:
-				textv.setText(“December”);
+                String month = textv.getText();
+	        	switch(month) {
+			case "January":
+				textv.setText("December");
 				break;
-			case “February”:
-				textv.setText(“January”);
+			case "February":
+				textv.setText("January");
 				break;
-			case “March”:
-				textv.setText(“February”);
+			case "March":
+				textv.setText("February");
 				break;
-			case “April”:
-				textv.setText(“March”);
+			case "April":
+				textv.setText("March");
 				break;
-			case “May”:
-				textv.setText(“April”);
+			case "May":
+				textv.setText("April");
 				break;
-			case “June”:
-				textv.setText(“May”);
+			case "June":
+				textv.setText("May");
 				break;
-			case “July”:
-				textv.setText(“June”);
+			case "July":
+				textv.setText("June");
 				break;
-			case “August”:
-				textv.setText(“July”);
+			case "August":
+				textv.setText("July");
 				break;
-			case “September”:
-				textv.setText(“August”);
+			case "September":
+				textv.setText("August");
 				break;
-			case “October”:
-				textv.setText(“September”);
+			case "October":
+				textv.setText("September");
 				break;
-			case “November”:
-				textv.setText(“October”);
+			case "November":
+				textv.setText("October");
 				break;
-			case “December”:
-				textv.setText(“November”);
+			case "December":
+				textv.setText("November");
 				yearv.setText((Int)yearv.getText - 1);
 				break;
 			default:
 				compacCalendarView.set(Calendar.MONTH, month);
-				textv.setText(“May”);
+				textv.setText("May");
 				textv.setText(new DateFormatSymbols().getMonths()[Calendar.MONTH]);	
             }
         });
@@ -168,45 +169,45 @@ String month = textv.getText();
                 compactCalendarView.showNextMonth();
 		String month = textv.getText();
 		switch(month) {
-			case “January”:
-				textv.setText(“February”);
+			case "January":
+				textv.setText("February");
 				break;
-			case “February”:
-				textv.setText(“March”);
+			case "February":
+				textv.setText("March");
 				break;
-			case “March”:
-				textv.setText(“April”);
+			case "March":
+				textv.setText("April");
 				break;
-			case “April”:
-				textv.setText(“May”);
+			case "April":
+				textv.setText("May");
 				break;
-			case “May”:
-				textv.setText(“June”);
+			case "May":
+				textv.setText("June");
 				break;
-			case “June”:
-				textv.setText(“July”);
+			case "June":
+				textv.setText("July");
 				break;
-			case “July”:
-				textv.setText(“August”);
+			case "July":
+				textv.setText("August");
 				break;
-			case “August”:
-				textv.setText(“September”);
+			case "August":
+				textv.setText("September");
 				break;
-			case “September”:
-				textv.setText(“October”);
+			case "September":
+				textv.setText("October");
 				break;
-			case “October”:
-				textv.setText(“November”);
+			case "October":
+				textv.setText("November");
 				break;
-			case “November”:
-				textv.setText(“December”);
+			case "November":
+				textv.setText("December");
 				break;
-			case “December”:
-				textv.setText(“January”);
+			case "December":
+				textv.setText("January");
 				yearv.setText((Int)yearv.getText + 1);
 				break;
 			default:
-				compacCalendarView.set(Calendar.MONTH, month);
+				compactCalendarView.setCurrentDate(Calendar.MONTH);
 				textv.setText(new DateFormatSymbols().getMonths()[Calendar.MONTH]);	
 				yearv.setText(Calendar.YEAR);
 		}
@@ -232,12 +233,12 @@ String month = textv.getText();
         }
     }
 
-    private List<Event> createBookings() {
+/*    private List<Event> createBookings() {
         return Arrays.asList(
-                new Event(“Test 1", "First test”, “here”, “now”, “forever”, “when”, “then"),
-                new Event(“Test 2", "Second test”, “here”, “now”, “forever”, “when”, “then"),
-                new Event(“Test 3", "Third test”, “here”, “now”, “forever”, “when”, “then"));
-    }
+                new Event("Test 1", "First test", "here", "now", "forever", "when", "then"),
+                new Event("Test 2", "Second test", "here", "now", "forever", "when", "then"),
+                new Event("Test 3", "Third test", "here", "now", "forever", "when", "then"));
+    } */
 
     private void setToMidnight(Calendar calendar) {
         calendar.set(Calendar.HOUR_OF_DAY, 0);

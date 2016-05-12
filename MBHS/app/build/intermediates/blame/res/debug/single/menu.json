@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "I:\\AndroidStuff\\FinalApp\\MBHS\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_main.xml",
+        "source": "I:\\AndroidStuff\\FinalApp\\MBHS\\app\\src\\main\\res\\menu\\menu_main.xml"
+    },
+    {
+        "merged": "I:\\AndroidStuff\\FinalApp\\MBHS\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_home_page.xml",
+        "source": "I:\\AndroidStuff\\FinalApp\\MBHS\\app\\src\\main\\res\\menu\\menu_home_page.xml"
+    }
+]
