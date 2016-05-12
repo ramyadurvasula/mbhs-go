@@ -1,19 +1,42 @@
 package com.example.ramya.mbhs;
 
+import android.graphics.Color;
+
+import java.util.Calendar;
+
 public class CalendarDayEvent {
 
-    private final long timeInMillis;
-    private final int color;
-    private final String name;
-    private final String desc;
+    public String title;
+    public String description;
+    public String location;
+    public String startDate;
+    public String endDate;
+    public String startTime;
+    public String endTime;
+    public long timeInMillis;
+    public int color;
+    public Event linkedEvent;
+
 //    private final Image icon;
 
-    public CalendarDayEvent(final long timeInMillis, final int color, final String n, final String d) {
+    public CalendarDayEvent(final long timeInMillis, final int color, final String n, final String d, String l) {
         this.timeInMillis = timeInMillis;
         this.color = color;
-        this.name = n;
-        this.desc = d;
-//        this.icon = i;
+        this.title = n;
+        this.description = d;
+        this.location = l;
+    }
+
+    public CalendarDayEvent (Event e) {
+        this.timeInMillis =  Calendar.getInstance().getTimeInMillis();
+        this.title = e.title;
+        this.description = e.description;
+        this.startDate = e.startDate;
+        this.endDate = e.endDate;
+        this.startTime = e.startTime;
+        this.endTime = e.endTime;
+        this.color = Color.DKGRAY;
+        this.linkedEvent = e;
     }
 
     public long getTimeInMillis() {
@@ -25,11 +48,11 @@ public class CalendarDayEvent {
     }
 
     public String getName() {
-        return name;
+        return title;
     }
 
     public String getDesc() {
-        return desc;
+        return description;
     }
 
 //    public Image getIcon() {
@@ -45,8 +68,8 @@ public class CalendarDayEvent {
 
         if (color != event.color) return false;
         if (timeInMillis != event.timeInMillis) return false;
-        if (!desc.equals(event.desc)) return false;
-        if (!name.equals(event.name)) return false;
+        if (!description.equals(event.description)) return false;
+        if (!title.equals(event.title)) return false;
 //      if (!icon) return false;
         return true;
     }
@@ -61,6 +84,6 @@ public class CalendarDayEvent {
     @Override
     public String
     toString() {
-        return name + "\n" + desc;
+        return title + "\n" + description;
     }
 }
