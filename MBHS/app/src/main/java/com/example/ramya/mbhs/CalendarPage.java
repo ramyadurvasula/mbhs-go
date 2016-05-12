@@ -1,6 +1,5 @@
 package com.example.ramya.mbhs;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,14 +7,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 
-import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
+import java.text.DateFormatSymbols;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -31,8 +28,7 @@ import java.util.Map;
 
 public class CalendarPage extends Fragment {
 
-    private Calendar currentCalender = Calendar.getInstance(Locale.getDefault());
-    private SimpleDateFormat dateFormatForMonth = new SimpleDateFormat("MMM - yyyy", Locale.getDefault());
+    private Calendar currentCalendar = Calendar.getInstance(Locale.getDefault());
     private Map<Date, List<Event>> bookings = new HashMap<>();
 
     @Nullable
@@ -41,8 +37,8 @@ public class CalendarPage extends Fragment {
         super.onCreate(savedInstanceState);
         View testview = inflater.inflate(R.layout.calendar_page, null);
         final List<String> mutableBookings = new ArrayList<>();
-	    final TextView textv = (TextView) testview.findViewById(R.id.month);
-	    final TextView yearv = (TextView) testview.findViewById(R.id.year);
+	TextView textv = (TextView) testview.findViewById(R.id.month);
+	TextView yearv = (TextView) testview.findViewById(R.id.year);
 
         final ListView bookingsListView = (ListView) testview.findViewById(R.id.bookings_listview);
         final Button showPreviousMonthBut = (Button) testview.findViewById(R.id.prev_button);
@@ -66,7 +62,8 @@ public class CalendarPage extends Fragment {
         compactCalendarView.setShouldShowMondayAsFirstDay(false);
 
         //set initial title
-//        bar.setText(dateFormatForMonth.format(compactCalendarView.getFirstDayOfCurrentMonth()));
+        textview.setText(new DateFormatSymbols().getMonths()[Calendar.MONTH]);
+	
 
         //set title on calendar scroll
         compactCalendarView.setListener(new CompactCalendarView.CompactCalendarViewListener() {
@@ -81,14 +78,15 @@ public class CalendarPage extends Fragment {
                         mutableBookings.add(booking.title);
                     }
                     // below will remove events
-                    // compactCalendarView.removeEvent(new CalendarDayEvent(dateClicked.getTime(), Color.argb(255, 169, 68, 65)), true);
+                    // 
                     adapter.notifyDataSetChanged();
                 }
+		else{
+                    mutableBookings.clear();
+                    adapter.notifyDataSetChanged();
+		}
             }        
-
-            bookingsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            }
+bookingsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapter, View v, int position,
                                     long arg3) {
@@ -102,13 +100,14 @@ public class CalendarPage extends Fragment {
 
 
 
-
                 @Override
                 public void onMonthScroll(Date firstDayOfNewMonth) {
-                }
+                    textv.setText(new DateFormatSymbols().getMonths()[firstDayOfNewMonth.MONTH]);
+               }
 
 
 
+        });
 
 
 
@@ -117,8 +116,8 @@ public class CalendarPage extends Fragment {
             @Override
             public void onClick(View v) {
                 compactCalendarView.showPreviousMonth();
-                String month = textv.getText();
-	        	switch(month) {
+String month = textv.getText();
+		switch(month) {
 			case "January":
 				textv.setText("December");
 				break;
@@ -207,7 +206,7 @@ public class CalendarPage extends Fragment {
 				yearv.setText((Int)yearv.getText + 1);
 				break;
 			default:
-				compactCalendarView.setCurrentDate(Calendar.MONTH);
+				compacCalendarView.set(Calendar.MONTH, month);
 				textv.setText(new DateFormatSymbols().getMonths()[Calendar.MONTH]);	
 				yearv.setText(Calendar.YEAR);
 		}
@@ -218,27 +217,27 @@ public class CalendarPage extends Fragment {
     }
 
     private void addEvents(CompactCalendarView compactCalendarView, int month) {
-        currentCalender.setTime(new Date());
-        currentCalender.set(Calendar.DAY_OF_MONTH, 1);
-        Date firstDayOfMonth = currentCalender.getTime();
+        currentCalendar.setTime(new Date());
+        currentCalendar.set(Calendar.DAY_OF_MONTH, 1);
+        Date firstDayOfMonth = currentCalendar.getTime();
         for(int i = 0; i < 6; i++){
-            currentCalender.setTime(firstDayOfMonth);
+            currentCalendar.setTime(firstDayOfMonth);
             if(month > -1){
-                currentCalender.set(Calendar.MONTH, month);
+                currentCalendar.set(Calendar.MONTH, month);
             }
-            currentCalender.add(Calendar.DATE, i);
-            setToMidnight(currentCalender);
-            compactCalendarView.addEvent(new CalendarDayEvent(currentCalender.getTimeInMillis(), R.color.accent_material_dark,  "Event " + i, "test " + i), false);
-            bookings.put(currentCalender.getTime(), createBookings());
+            currentCalendar.add(Calendar.DATE, i);
+            setToMidnight(currentCalendar);
+            compactCalendarView.addEvent(new CalendarDayEvent(currentCalendar.getTimeInMillis(), R.color.accent_material_dark,  "Event " + i, "test " + i), false);
+            bookings.put(currentCalendar.getTime(), createBookings());
         }
     }
 
-/*    private List<Event> createBookings() {
-        return Arrays.asList(
-                new Event("Test 1", "First test", "here", "now", "forever", "when", "then"),
+    private List<Event> createBookings() {
+	List<Event> list = {new Event("Test 1", "First test", "here", "now", "forever", "when", "then"),
                 new Event("Test 2", "Second test", "here", "now", "forever", "when", "then"),
-                new Event("Test 3", "Third test", "here", "now", "forever", "when", "then"));
-    } */
+                new Event("Test 3", "Third test", "here", "now", "forever", "when", "then")};
+        return Arrays.asList(list);
+    }
 
     private void setToMidnight(Calendar calendar) {
         calendar.set(Calendar.HOUR_OF_DAY, 0);
