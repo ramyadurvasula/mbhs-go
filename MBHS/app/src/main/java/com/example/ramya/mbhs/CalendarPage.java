@@ -54,27 +54,27 @@ public class CalendarPage extends Fragment {
 
         final ArrayAdapter adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, mutableBookings);
         bookingsListView.setAdapter(adapter);
-        final CompactCalendarView compactCalendarView = (CompactCalendarView) testview.findViewById(R.id.compactcalendar_view);
-        compactCalendarView.drawSmallIndicatorForEvents(true);
+        final CompactCalendarView ccv = (CompactCalendarView) testview.findViewById(R.id.compactcalendar_view);
+        ccv.drawSmallIndicatorForEvents(true);
 
-        compactCalendarView.setCalendarBackgroundColor(R.color.background_material_light);
+        ccv.setCalendarBackgroundColor(R.color.background_material_light);
         // below allows you to configure color for the current day in the month
-        compactCalendarView.setCurrentDayBackgroundColor(getResources().getColor(R.color.colorAccent));
+        ccv.setCurrentDayBackgroundColor(getResources().getColor(R.color.colorAccent));
         // below allows you to configure colors for the current day the user has selected
-        compactCalendarView.setCurrentSelectedDayBackgroundColor(getResources().getColor(R.color.colorAccent));
+        ccv.setCurrentSelectedDayBackgroundColor(getResources().getColor(R.color.colorAccent));
 
-//        addEvents(compactCalendarView, -1);
-        compactCalendarView.invalidate();
+//        addEvents(ccv, -1);
+        ccv.invalidate();
 
         // below line will display Sunday as the first day of the week
-        compactCalendarView.setShouldShowMondayAsFirstDay(false);
+        ccv.setShouldShowMondayAsFirstDay(false);
 
         //set initial title
         textv.setText(new DateFormatSymbols().getMonths()[Calendar.MONTH]);
 	
 
         //set title on calendar scroll
-        compactCalendarView.setListener(new CompactCalendarView.CompactCalendarViewListener() {
+        ccv.setListener(new CompactCalendarView.CompactCalendarViewListener() {
                                             @Override
                                             public void onDayClick(Date dateClicked) {
                                                 List<Event> bookingsFromMap = bookings.get(dateClicked);
@@ -115,7 +115,7 @@ public class CalendarPage extends Fragment {
          showPreviousMonthBut.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
-                 compactCalendarView.showPreviousMonth();
+                 ccv.showPreviousMonth();
                  String month = (String) textv.getText();
                  switch (month) {
                      case "January":
@@ -156,7 +156,7 @@ public class CalendarPage extends Fragment {
                          yearv.setText(Integer.parseInt((String) yearv.getText()) - 1);
                          break;
                      default:
-                         compactCalendarView.setCurrentDate(currentCalendar.getTime());
+                         ccv.setCurrentDate(currentCalendar.getTime());
                          textv.setText(new DateFormatSymbols().getMonths()[Calendar.MONTH]);
                          yearv.setText(currentCalendar.getTime().getYear());
                  }
@@ -166,7 +166,7 @@ public class CalendarPage extends Fragment {
         showNextMonthBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                compactCalendarView.showNextMonth();
+                ccv.showNextMonth();
 	        	String month = (String)textv.getText();
 	        	switch(month) {
 		    	case "January":
@@ -207,7 +207,7 @@ public class CalendarPage extends Fragment {
 			    	yearv.setText(Integer.parseInt((String) yearv.getText()) + 1);
 				break;
 			default:
-                compactCalendarView.setCurrentDate(currentCalendar.getTime());
+                ccv.setCurrentDate(currentCalendar.getTime());
                 textv.setText(new DateFormatSymbols().getMonths()[Calendar.MONTH]);
                 yearv.setText(currentCalendar.getTime().getYear());
 		}
@@ -217,7 +217,7 @@ public class CalendarPage extends Fragment {
 
     }
 
-    private void addEvents(CompactCalendarView compactCalendarView, int month) {
+    private void addEvents(CompactCalendarView ccv, int month) {
         currentCalendar.setTime(new Date());
         currentCalendar.set(Calendar.DAY_OF_MONTH, 1);
         Date firstDayOfMonth = currentCalendar.getTime();
@@ -228,7 +228,7 @@ public class CalendarPage extends Fragment {
             }
             currentCalendar.add(Calendar.DATE, i);
             setToMidnight(currentCalendar);
-            compactCalendarView.addEvent(new CalendarDayEvent(arrayOfEvents[i]), false);
+            ccv.addEvent(new CalendarDayEvent(arrayOfEvents[i]), false);
             bookings.put(currentCalendar.getTime(), createBookings());
         }
     }
